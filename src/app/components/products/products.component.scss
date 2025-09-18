@@ -1,0 +1,58 @@
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px; /* Provides spacing between cards */
+    justify-content: flex-start;
+  }
+  
+  .product-card {
+    flex: 1 1 300px; /* This is the key to responsiveness */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Ensures padding/borders are included in the size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #f8dbdb; /* Light gray background color */
+    cursor: pointer; /* Changes the cursor to a pointer */
+  }
+  
+  /* Optional: Make the image fit nicely inside the card */
+  .product-card img {
+    height: 200px;
+    object-fit: contain; /* Ensures the image is fully visible and not cropped */
+    margin: auto; /* Centers the image */
+  }
+  
+  /* Optional: Style the actions row for better alignment */
+  .product-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: auto; /* Pushes the actions to the bottom of the card */
+  }
+  
+  /* Optional: Style the price for emphasis */
+  .product-price {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 600px) {
+    .products-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .product-card {
+      width: 100%;
+      max-width: 400px;
+    }
+  }

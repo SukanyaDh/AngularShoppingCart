@@ -1,0 +1,21 @@
+<div class="container my-5 mb-10">
+    <h1 class="mat-display-1">Products</h1>
+  
+    <div class="products-grid">
+      <mat-card class="product-card" *ngFor="let product of products">
+        <img mat-card-image [src]="product.imageUrl" [alt]="product.name">
+        
+        <mat-card-content>
+          <h3 class="mat-h3">{{ product.name }}</h3>
+          <p class="mat-body-1">{{ product.description }}</p>
+        </mat-card-content>
+  
+        <mat-card-actions class="product-actions" align="start">
+          <span class="product-price">${{ product.price }}</span>
+          <button mat-button color="primary" (click)="addToCart(product.id)">
+            <mat-icon>add_shopping_cart</mat-icon> {{product.buttonTitle}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>

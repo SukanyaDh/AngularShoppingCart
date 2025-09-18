@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-button routerLink="/products">Products</button>
+  
+      <span class="toolbar-spacer"></span>
+      <span class="toolbar-spacer"></span>
+      <span class="toolbar-spacer"></span>
+      <span class="toolbar-spacer"></span>
+        <button class="pull-right" *ngIf="!isCartPage" mat-button routerLink="/cart"><mat-icon  aria-hidden="false">shopping_cart</mat-icon>
+            {{count}} Items &nbsp;
+            ${{subtotal}}
+        </button>
+        
+    </mat-toolbar-row>
+  </mat-toolbar>
