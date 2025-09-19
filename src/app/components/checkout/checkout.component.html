@@ -1,0 +1,164 @@
+<!-- checkout.component.html -->
+<div class="checkout-container">
+    <div class="checkout-header">
+      <button mat-button color="primary" routerLink="/cart" class="back-button">
+        <mat-icon>arrow_back</mat-icon> Back to Cart
+      </button>
+      <h1 class="mat-headline-4">Checkout</h1>
+    </div>
+  
+    <div *ngIf="!orderPlaced; else orderComplete">
+      <div class="checkout-content">
+        <mat-card class="shipping-form">
+          <mat-card-header>
+            <mat-card-title>Shipping Information</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form [formGroup]="checkoutForm" (ngSubmit)="placeOrder()">
+              <div class="form-row">
+                <mat-form-field appearance="outline" class="half-width">
+                  <mat-label>First Name</mat-label>
+                  <input matInput formControlName="firstName" required>
+                  <mat-error *ngIf="checkoutForm.get('firstName')?.hasError('required')">
+                    First name is required
+                  </mat-error>
+                </mat-form-field>
+  
+                <mat-form-field appearance="outline" class="half-width">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput formControlName="lastName" required>
+                  <mat-error *ngIf="checkoutForm.get('lastName')?.hasError('required')">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+  
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" required>
+                <mat-error *ngIf="checkoutForm.get('email')?.hasError('required')">
+                  Email is required
+                </mat-error>
+                <mat-error *ngIf="checkoutForm.get('email')?.hasError('email')">
+                  Please enter a valid email
+                </mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Phone</mat-label>
+                <input matInput type="tel" formControlName="phone" required>
+                <mat-error *ngIf="checkoutForm.get('phone')?.hasError('required')">
+                  Phone number is required
+                </mat-error>
+                <mat-error *ngIf="checkoutForm.get('phone')?.hasError('pattern')">
+                  Please enter a valid 10-digit phone number
+                </mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Address</mat-label>
+                <textarea matInput formControlName="address" required></textarea>
+                <mat-error *ngIf="checkoutForm.get('address')?.hasError('required')">
+                  Address is required
+                </mat-error>
+              </mat-form-field>
+  
+              <div class="form-row">
+                <mat-form-field appearance="outline" class="third-width">
+                  <mat-label>City</mat-label>
+                  <input matInput formControlName="city" required>
+                  <mat-error *ngIf="checkoutForm.get('city')?.hasError('required')">
+                    City is required
+                  </mat-error>
+                </mat-form-field>
+  
+                <mat-form-field appearance="outline" class="third-width">
+                  <mat-label>State</mat-label>
+                  <input matInput formControlName="state" required>
+                  <mat-error *ngIf="checkoutForm.get('state')?.hasError('required')">
+                    State is required
+                  </mat-error>
+                </mat-form-field>
+  
+                <mat-form-field appearance="outline" class="third-width">
+                  <mat-label>ZIP Code</mat-label>
+                  <input matInput formControlName="zipCode" required>
+                  <mat-error *ngIf="checkoutForm.get('zipCode')?.hasError('required')">
+                    ZIP code is required
+                  </mat-error>
+                  <mat-error *ngIf="checkoutForm.get('zipCode')?.hasError('pattern')">
+                    Please enter a valid ZIP code
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+  
+        <mat-card class="order-summary">
+          <mat-card-header>
+            <mat-card-title>Order Summary</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="order-items">
+              <div *ngFor="let item of cartItems" class="order-item">
+                <div class="item-image">
+                  <img [src]="item.imageUrl" [alt]="item.name">
+                </div>
+                <div class="item-details">
+                  <h3>{{ item.name }}</h3>
+                  <p>Quantity: {{ item.quantity }}</p>
+                  <p class="price">${{ item.price * item.quantity | number:'1.2-2' }}</p>
+                </div>
+              </div>
+            </div>
+  
+            <div class="order-totals">
+              <div class="subtotal">
+                <span>Subtotal</span>
+                <span>${{ subtotal | number:'1.2-2' }}</span>
+              </div>
+              <div class="shipping">
+                <span>Shipping</span>
+                <span>Free</span>
+              </div>
+              <div class="total">
+                <span>Total</span>
+                <span>${{ subtotal | number:'1.2-2' }}</span>
+              </div>
+            </div>
+  
+            <button 
+              mat-raised-button 
+              color="primary" 
+              class="place-order-btn" 
+              (click)="placeOrder()"
+              [disabled]="!checkoutForm.valid || cartItems.length === 0">
+              Place Order
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  
+    <ng-template #orderComplete>
+      <mat-card class="order-complete">
+        <mat-card-header>
+          <mat-card-title>Order Placed Successfully!</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="success-message">
+            <mat-icon class="success-icon">check_circle</mat-icon>
+            <h2>Thank you for your order!</h2>
+            <p>Your order number is: <strong>{{ orderNumber }}</strong></p>
+            <p>We've sent a confirmation email with your order details.</p>
+          </div>
+          <div class="order-actions">
+            <button mat-raised-button color="primary" (click)="continueShopping()">
+              Continue Shopping
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </ng-template>
+  </div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { signal } from '@angular/core';
+import { Product, PRODUCTS } from '../data/products.data';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,6 +10,7 @@ export class CommonService {
 
   private dataValue =  new Subject<string> ()
   data$ = this.dataValue.asObservable();
+  private products = signal<Product[]>(PRODUCTS);
 
   setData(data:any){
     this.dataValue.next(data)
@@ -16,10 +18,21 @@ export class CommonService {
 
   private cartValue= signal(0)
   private productsObj=signal([])
-  private productList=signal([])
+  private productList=signal<Product[]>(PRODUCTS);
   cart$= this.cartValue.asReadonly()
   productObj$=this.productsObj.asReadonly()
   productList$=this.productList.asReadonly()
+
+  getProducts(): Product[] {
+    return this.products();
+  }
+
+  // Get product by ID
+  getProductById(id: number): Observable<Product | undefined> {
+    const product = this.productList().find(p => p.id === id);
+    return of(product);
+  }
+
 
   getProductUpdatedList(newProdList: any) {
     if (newProdList) {
@@ -79,5 +92,11 @@ export class CommonService {
         return products.filter((p:any) => p.id !== product.id);
       });
     }
+  }
+
+  clearCart(){
+    this.cartValue.set(0)
+    this.productsObj.set([])
+    this.productList.set(PRODUCTS)
   }
 }
