@@ -44,14 +44,14 @@ export class CartComponent {
 
   increaseQuantity(item: any) {
     item.quantity++;
-   this.onQuantityChange(item,'inc');
+   this.onQuantityChange(item);
    // this.commonService.addToCart(item)
   }
 
   decreaseQuantity(item: any) {
     if (item.quantity > 1) {
       item.quantity--;
-      this.onQuantityChange(item,'dec');
+      this.onQuantityChange(item);
     }
     //this.commonService.removeCart(item)
   }
@@ -72,19 +72,20 @@ export class CartComponent {
     return true;
   }
 
-  onQuantityChange(product: any,action:string) {
+  onQuantityChange(product: any) {
     // Update the quantity in the service
     console.log(product)
-    // const updatedProducts = this.cartList.map(p => 
-    //   p.id === product.id ? { ...p, quantity: product.quantity } : p
+    const updatedProducts = this.cartList.map(p => 
+      p.id === product.id ? { ...p, quantity: product.quantity } : p
 
-    // );
-    if(action=='inc'){
-      this.commonService.addToCart(product)
-    } else {
-      this.commonService.removeCart(product)
-    }
-   // this.cartList=updatedProducts
+    );
+    // if(action=='inc'){
+    //   this.commonService.addToCart(product)
+    // } else {
+    //   this.commonService.removeCart(product)
+    // }
+    this.cartList=updatedProducts
+    this.commonService.updateProductList(this.cartList)
     
   }
 

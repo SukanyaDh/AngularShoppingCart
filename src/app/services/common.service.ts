@@ -27,6 +27,15 @@ export class CommonService {
     }
   }
   
+  updateProductList(products:any){
+    this.productsObj.update((products:any) => {
+      return products.map((p:any) => 
+        p.id === products.id 
+          ? { ...p, quantity: products.quantity } 
+          : p
+      );
+    });
+  }
 
   addToCart(product?:any){
     
