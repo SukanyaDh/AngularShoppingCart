@@ -11,7 +11,7 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
-  
+      margin-top:20px;
       @media (min-width: 768px) {
         flex-direction: row;
       }
@@ -103,4 +103,10 @@
       padding: 0;
     }
   }
-  
+  ::ng-deep .button-action {
+    color: #2b348d !important;
+    
+    &:hover {
+      background-color: #e7e9fe !important;
+    }
+  }  

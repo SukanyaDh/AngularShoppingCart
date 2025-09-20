@@ -1,5 +1,5 @@
 <div class="product-details-container" *ngIf="product">
-    <button mat-button color="primary" (click)="goBack()" class="back-button">
+    <button mat-button  (click)="goBack()" class="button-action">
       <mat-icon>arrow_back</mat-icon> Back to Products
     </button>
     
@@ -13,7 +13,7 @@
         <p class="product-price">${{ product.price }}</p>
         
         <div class="product-actions">
-          <button mat-raised-button color="primary" (click)="product.buttonTitle==='Add To Cart' ? addToCart(product.id) : goToCart()">
+          <button mat-raised-button class="button-action" (click)="product.buttonTitle==='Add To Cart' ? addToCart(product.id) : goToCart()">
             <mat-icon>add_shopping_cart</mat-icon> {{product.buttonTitle==='Remove From Cart' ? 'Go To Cart' : product.buttonTitle}}
           </button>
         </div>

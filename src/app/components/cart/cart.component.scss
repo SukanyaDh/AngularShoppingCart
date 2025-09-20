@@ -6,6 +6,7 @@
     margin: 20px auto;
     max-width: 90%; // Adjust max-width as needed
     padding: 20px;
+    background-color: transparent !important;
   }
   
   .full-width-table {
@@ -112,4 +113,16 @@
 .pull-right{
   width:17%;
   float:right;
+}
+
+.full-width-table{
+  background-color: transparent !important;
+}
+
+::ng-deep .back-button {
+  color: #2b348d !important;
+  
+  &:hover {
+    background-color: #e7e9fe !important;
+  }
 }

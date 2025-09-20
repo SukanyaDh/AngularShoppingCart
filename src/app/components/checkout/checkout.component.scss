@@ -30,6 +30,7 @@
     .shipping-form, .order-summary {
       padding: 24px;
       margin-bottom: 24px;
+      background-color: transparent !important;
     }
   
     .form-row {
@@ -152,5 +153,13 @@
       .order-actions {
         margin-top: 32px;
       }
+    }
+  }
+
+  ::ng-deep .back-button {
+    color: #2b348d !important;
+    
+    &:hover {
+      background-color: #e7e9fe !important;
     }
   }

@@ -1,10 +1,10 @@
 <div class="mat-elevation-z8">
 
   <div class="container my-5">
-    <button mat-button color="primary" (click)="goBack()" class="pull-left back-button">
+    <button mat-button  (click)="goBack()" class="pull-left back-button">
         <mat-icon>arrow_back</mat-icon> Back to Products
     </button>
-    <button mat-button color="accent" (click)="clearCart()" class="pull-right">
+    <button mat-button (click)="clearCart()" class="pull-right back-button">
         <mat-icon>delete</mat-icon> Clear Cart
     </button>
     <mat-card>
@@ -16,7 +16,7 @@
         <mat-card-title *ngIf="cartList.length===0">Your Shopping Cart is Empty</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <table *ngIf="cartList.length>0" mat-table [dataSource]="dataSource" >
+        <table *ngIf="cartList.length>0" class="full-width-table" mat-table [dataSource]="dataSource" >
   
           <ng-container matColumnDef="imageUrl">
             <th mat-header-cell *matHeaderCellDef></th>
@@ -64,7 +64,7 @@
   
         <div class="subtotal-section mat-elevation-z2" *ngIf="cartList.length>0">
           <h2 class="mat-h2">Subtotal: ${{ calculateSubtotal() | number:'1.2-2' }}</h2>
-          <button mat-raised-button color="accent" routerLink="/checkout">Proceed to Checkout</button>
+          <button mat-raised-button class="back-button" routerLink="/checkout">Proceed to Checkout</button>
 
         </div>
       </mat-card-content>

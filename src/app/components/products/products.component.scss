@@ -6,20 +6,32 @@
   }
   
   .product-card {
-    flex: 1 1 300px; /* This is the key to responsiveness */
+    flex: 1 1 325px;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box; /* Ensures padding/borders are included in the size */
+    box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+    transition: all 0.3s ease;
+    background-color: transparent !important;
+    border-radius: 8px; /* Optional: Add rounded corners */
+    overflow: hidden; /* Ensures content doesn't overflow rounded corners */
+    
+    /* Add a subtle white background to the card content */
+    .mat-card {
+      background: white;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
   }
   
+  /* Hover effect */
   .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-15px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    background-color: #f8dbdb; /* Light gray background color */
-    cursor: pointer; /* Changes the cursor to a pointer */
+    background-color: #E6EFF7 !important;
+    cursor: pointer;
+    
   }
   
   /* Optional: Make the image fit nicely inside the card */
@@ -36,6 +48,7 @@
     align-items: center;
     width: 100%;
     margin-top: auto; /* Pushes the actions to the bottom of the card */
+    margin-left:7px;
   }
   
   /* Optional: Style the price for emphasis */
@@ -54,5 +67,17 @@
     .product-card {
       width: 100%;
       max-width: 400px;
+    }
+  }
+
+  .product-image {
+    margin-top:30px !important;
+  }
+
+  ::ng-deep .button-action {
+    color: #2b348d !important;
+    
+    &:hover {
+      background-color: #e7e9fe !important;
     }
   }
