@@ -147,7 +147,8 @@ export class ProductsComponent {
   
     // Update the component's product list with the new array
     this.products = updatedProducts;
-  
+    this.displayedProducts=updatedProducts;
+
     // Notify the service that the main product list has changed
     // The service can then update its own state (e.g., a signal)
     this.commonService.getProductUpdatedList(this.products);
