@@ -70,6 +70,8 @@ export class CheckoutComponent implements OnInit {
       this.orderNumber = Math.random().toString(36).substring(2, 10).toUpperCase();
       this.orderPlaced = true;
       this.commonService.clearCart();
+      this.router.navigate(['/payment']);
+
     } else {
       // Mark all fields as touched to show validation messages
       Object.keys(this.checkoutForm.controls).forEach(field => {

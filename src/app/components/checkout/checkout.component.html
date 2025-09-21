@@ -7,7 +7,7 @@
       <h1 class="mat-headline-4">Checkout</h1>
     </div>
   
-    <div *ngIf="!orderPlaced; else orderComplete">
+    <div *ngIf="!orderPlaced">
       <div class="checkout-content">
         <mat-card class="shipping-form">
           <mat-card-header>
@@ -140,7 +140,7 @@
       </div>
     </div>
   
-    <ng-template #orderComplete>
+    <!-- <ng-template #orderComplete>
       <mat-card class="order-complete">
         <mat-card-header>
           <mat-card-title>Order Placed Successfully!</mat-card-title>
@@ -159,5 +159,5 @@
           </div>
         </mat-card-content>
       </mat-card>
-    </ng-template>
+    </ng-template> -->
   </div>

@@ -1,0 +1,24 @@
+<div class="payment-card">
+    <div class="header">
+      <h2>Stripe Payment Demo</h2>
+    </div>
+  
+    <form [formGroup]="stripeForm" (ngSubmit)="createToken()">
+      <div class="form-group">
+        <label for="name">Name on Card</label>
+        <input type="text" id="name" formControlName="name" placeholder="John Doe" class="form-control">
+      </div>
+  
+      <div #cardElementRef class="form-group stripe-element-container"></div>
+  
+      <button type="submit" [disabled]="stripeForm.invalid || loading" class="pay-button">
+        <span *ngIf="!loading">Create Payment Token</span>
+        <span *ngIf="loading">Processing...</span>
+      </button>
+    </form>
+  
+    <div *ngIf="paymentSuccess" class="success-message">
+      <p>Success! A payment token was created.</p>
+      <p>This demo is for demonstration purposes only. For production, use a secure backend.</p>
+    </div>
+  </div>

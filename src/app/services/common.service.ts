@@ -95,6 +95,7 @@ export class CommonService {
   }
 
   clearCart(){
+    console.log(this.getProducts())
     this.cartValue.set(0)
     this.productsObj.set([])
     this.productList.set(PRODUCTS)
