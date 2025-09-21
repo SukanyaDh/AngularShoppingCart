@@ -1,12 +1,27 @@
 <div class="container my-5 mb-10">
+    <form class="search-container">
+      <input #criteria type="text" (input)="updateCriteria(criteria.value)" placeholder="Search Products" class="search-input">
+    </form>
     <h1 class="mat-display-1">Products</h1>
+
+    <!-- Category Tabs -->
+  <div class="category-tabs">
+    <mat-tab-group animationDuration="300ms" (selectedTabChange)="selectCategory($event.tab.textLabel.split(' ')[0])">
+      <mat-tab *ngFor="let category of categories" 
+               [label]="category + ' (' + getCategoryCount(category) + ')'"
+               [class.active-tab]="selectedCategory === category">
+      </mat-tab>
+    </mat-tab-group>
+  </div>
   
-    <div class="products-grid">
-      <mat-card class="product-card" *ngFor="let product of products" >
+   
+    <div class="products-grid"  [@tabChangeAnimation]="selectedCategory"  [@filterAnimation]="totalProducts">
+      <mat-card class="product-card" *ngFor="let product of displayedProducts; trackBy: trackByProductId">
         <img mat-card-image class="product-image" [src]="product.imageUrl" [alt]="product.name" (click)="viewProductDetails(product.id)">
         
         <mat-card-content (click)="viewProductDetails(product.id)">
           <h3 class="mat-h3">{{ product.name }}</h3>
+          <p class="product-description">{{ product.description }}</p>
         </mat-card-content>
   
         <mat-card-actions class="product-actions" align="start">
@@ -17,4 +32,10 @@
         </mat-card-actions>
       </mat-card>
     </div>
+    <div class="load-more-container" *ngIf="hasMoreProducts">
+      <button mat-raised-button (click)="loadMore()" class="load-more-button">
+        Load More
+      </button>
+    </div>
+
   </div>

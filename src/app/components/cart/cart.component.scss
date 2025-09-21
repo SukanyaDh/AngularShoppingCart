@@ -1,125 +1,107 @@
 .container {
-    padding: 20px;
-  }
-  
-  mat-card {
-    margin: 20px auto;
-    max-width: 90%; // Adjust max-width as needed
-    padding: 20px;
-    background-color: transparent !important;
-  }
-  
-  .full-width-table {
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .product-cart-image {
-    width: 60px; // Adjust size as needed
-    height: 60px;
-    object-fit: contain;
-    margin-right: 10px;
-    border-radius: 4px; // Slight roundness
-  }
-  
-  .quantity-input {
-    width: 80px; // Adjust width for the select input
-    vertical-align: middle;
-  }
-  
-  .subtotal-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    margin-top: 20px;
-    background-color: #f5f5f5; // Light background
-    border-radius: 4px;
-  }
-  
-  h2 {
-    margin: 0;
-  }
-  
-  // Responsive adjustments for smaller screens
-  @media (max-width: 768px) {
-    .full-width-table {
-      display: block;
-      overflow-x: auto; // Allows table to scroll horizontally
-      white-space: nowrap; // Prevents content from wrapping
-    }
-  
-  
-    .subtotal-section {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .subtotal-section button {
-      margin-top: 15px;
-      width: 100%;
-    }
-  }
-
-.quantity-control {
-  display: flex;
-  
-  gap: 4px;
-
-  .quantity-input {
-    width: 50px;
-    text-align: center;
-    padding: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -moz-appearance: textfield; /* Firefox */
-    
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    &:focus {
-      outline: none;
-      border-color: #3f51b5;
-      box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);
-    }
-  }
-
-  button {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    min-width: 32px;
-    line-height: 32px;
-
-    mat-icon {
-      font-size: 18px;
-      width: 18px;
-      height: 18px;
-      line-height: 18px;
-    }
-  }
+  padding: 20px;
+  width:100%;
 }
 
-.pull-left{
-  width:17%
-}
-
-.pull-right{
-  width:17%;
-  float:right;
-}
-
-.full-width-table{
+mat-card {
+  margin: 20px auto;
+  max-width: 90%;
+  padding: 20px;
   background-color: transparent !important;
 }
 
-::ng-deep .back-button {
+.full-width-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.product-cart-image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.quantity-selector {
+  width: 100px; /* Adjusted width for better look */
+}
+
+.subtotal-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.subtotal-section h2 {
+  margin: 0;
+}
+
+.top-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-button,
+.clear-cart-button
+ {
+  color: #2b348d;
+  background-color: transparent;
+  border: 1px solid #2b348d;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-button:hover,
+.clear-cart-button:hover {
+  background-color: #e7e9fe;
+  color: #2b348d;
+}
+
+.proceed-to-checkout-button {
+  background-color: #2b348d;
+  color: white;
+}
+
+.proceed-to-checkout-button:hover {
+  background-color: #1e266a;
+}
+
+@media (max-width: 768px) {
+  .full-width-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .subtotal-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .subtotal-section .proceed-to-checkout-button {
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .top-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .back-button, .clear-cart-button {
+    width: 100%;
+  }
+}
+
+::ng-deep  .back-button, .clear-cart-button {
   color: #2b348d !important;
   
   &:hover {

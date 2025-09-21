@@ -94,10 +94,19 @@ export class CommonService {
     }
   }
 
-  clearCart(){
-    console.log(this.getProducts())
-    this.cartValue.set(0)
-    this.productsObj.set([])
-    this.productList.set(PRODUCTS)
+  clearCart() {
+    // Reset cart values
+    this.cartValue.set(0);
+    this.productsObj.set([]);
+    
+    // Reset all products' inCart status and button title
+    const resetProducts = PRODUCTS.map(product => ({
+      ...product,
+      inCart: false,
+      buttonTitle: 'Add To Cart'
+    }));
+    
+    this.productList.set(resetProducts);
   }
+  
 }
