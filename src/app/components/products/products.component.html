@@ -20,7 +20,7 @@
         <img mat-card-image class="product-image" [src]="product.imageUrl" [alt]="product.name" (click)="viewProductDetails(product.id)">
         
         <mat-card-content (click)="viewProductDetails(product.id)">
-          <h3 class="mat-h3">{{ product.name }}</h3>
+          <h3 class="mat-h3 product-name">{{ product.name }}</h3>
           <p class="product-description">{{ product.description }}</p>
         </mat-card-content>
   
