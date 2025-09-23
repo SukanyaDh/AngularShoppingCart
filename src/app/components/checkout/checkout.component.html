@@ -4,13 +4,12 @@
       <button mat-button color="primary" routerLink="/cart" class="back-button">
         <mat-icon>arrow_back</mat-icon> Back to Cart
       </button>
-      <h1 class="mat-headline-4">Checkout</h1>
     </div>
   
     <div *ngIf="!orderPlaced">
       <div class="checkout-content">
         <mat-card class="shipping-form">
-          <mat-card-header>
+          <mat-card-header class="mat-card-header">
             <mat-card-title>Shipping Information</mat-card-title>
           </mat-card-header>
           <mat-card-content>
